@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UI = UnityEngine.UI;
 
-public partial class ShowImage : MonoBehaviour
+public partial class ShowImageUseFolders : MonoBehaviour
 {
     // LoadFiles.cs を読み込み
     public LoadFiles _loadFiles;
