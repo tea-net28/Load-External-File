@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 
 public class LoadFiles : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class LoadFiles : MonoBehaviour
 
     [Header("指定フォルダの中にさらにフォルダを作成する場合はチェック")]
     [SerializeField] bool _useFolders = false;
-    
+
     string _path;
     string _filePath;
 
@@ -90,8 +91,14 @@ public class LoadFiles : MonoBehaviour
             {
                 ImageData data = new ImageData();
 
+                // id の付与
+                data.id = i;
+
                 // ファイル名を構造体に保存する
-                data.fileName = files[i];
+                data.fileName = files[i].Split(Path.DirectorySeparatorChar).Last();
+
+                // ファイルパスを構造体に保存する
+                data.filePath = files[i];
 
                 // 画像をバイト型で読み込み
                 byte[] bytes = File.ReadAllBytes(files[i]);
@@ -157,7 +164,9 @@ public class LoadFiles : MonoBehaviour
 
 public struct ImageData
 {
+    public int id;
     public string fileName;
+    public string filePath;
     public Texture2D texture;
     public int width;
     public int height;
